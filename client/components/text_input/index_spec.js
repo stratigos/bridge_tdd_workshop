@@ -54,6 +54,18 @@ describe('<TextInput />', () => {
 
       expect(wrapper.find('input[type="text"]').first().props().className).not.toMatch(/ red/);
     });
+
+    it('calls the handleChange() method', () => {
+      // A Spy must be set on a property of the class, not on a function of an
+      //  instance of a class. It must also be set before any calls to render
+      //  the class/Component.
+      const spy = spyOn(TextInput.prototype, 'handleChange');
+      const shallowSpyWrapper = shallow(<TextInput />);
+
+      shallowSpyWrapper.find('input[type="text"]').first().simulate('change', { target: { value: 'derp!' } });
+
+      expect(spy).toHaveBeenCalled();
+    });
   });
 
   describe('when the button is clicked', () => {
@@ -66,9 +78,6 @@ describe('<TextInput />', () => {
     });
 
     it('calls the addPicture() method', () => {
-      // A Spy must be set on a property of the class, not on a function of an
-      //  instance of a class. It must also be set before any calls to render
-      //  the class/Component.
       const spy = spyOn(TextInput.prototype, 'addPicture');
       const shallowSpyWrapper = shallow(<TextInput />);
 
