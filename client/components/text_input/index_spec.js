@@ -15,4 +15,10 @@ describe('<TextInput />', () => {
 
     expect(wrapper.find('input[type="text"]').length).toEqual(1);
   });
+
+  it('has placeholder text prop', () => {
+    const wrapper = shallow(<TextInput />);
+
+    expect(wrapper.find('input[placeholder="type stuff here!"]')).not.toBeUndefined();
+  });
 });
