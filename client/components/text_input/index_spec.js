@@ -1,14 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Simulate } from 'enzyme';
 
 import TextInput from './index';
 
 describe('<TextInput />', () => {
-  it('produces a div container with a single input', () => {
+  it('produces a div container for the input', () => {
     const wrapper = shallow(<TextInput />);
 
-    expect(wrapper.find('div').length).toEqual(1);
+    expect(wrapper.find('div.todds-test-input-container').length).toEqual(1);
   });
 
   it('produces an input of type text', () => {
@@ -23,6 +22,17 @@ describe('<TextInput />', () => {
     expect(wrapper.find('input[placeholder="type stuff here!"]')).not.toBeUndefined();
   });
 
+  it('produces a div container for the button', () => {
+    const wrapper = shallow(<TextInput />);
+
+    expect(wrapper.find('div.todds-test-btn-container').length).toEqual(1);
+  });
+
+  it('produces a button', () => {
+    const wrapper = shallow(<TextInput />);
+
+    expect(wrapper.find('button').length).toEqual(1);
+  });
 
   describe('when input value is long', () => {
     it('adds CSS class for red text when value is greater than 10 characters', () => {
