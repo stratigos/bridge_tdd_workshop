@@ -66,7 +66,15 @@ describe('<TextInput />', () => {
     });
 
     it('calls the addPicture() method', () => {
+      // A Spy must be set on a property of the class, not on a function of an
+      //  instance of a class. It must also be set before any calls to render
+      //  the class/Component.
+      const spy = spyOn(TextInput.prototype, 'addPicture');
+      const shallowSpyWrapper = shallow(<TextInput />);
 
+      shallowSpyWrapper.find('button').first().simulate('click');
+
+      expect(spy).toHaveBeenCalled();
     });
   });
 });
