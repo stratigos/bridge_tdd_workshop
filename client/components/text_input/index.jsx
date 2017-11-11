@@ -9,10 +9,12 @@ export default class TextInput extends Component {
       initialClassName: 'stuff',
       btnClassName: 'stuff',
       inputClassName: 'stuff',
-      inputText: ''
+      inputText: '',
+      imgTag: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.addPicture = this.addPicture.bind(this);
   };
 
   handleChange(event) {
@@ -23,6 +25,14 @@ export default class TextInput extends Component {
     } else {
       this.setState({ inputClassName: this.state.initialClassName });
     }
+  };
+
+  addPicture() {
+    let imgTag = <img
+      src="https://i.pinimg.com/originals/c4/dd/5d/c4dd5d671bb86d8551e9697c2d9ece06.gif"
+      alt="Nyan Cat" />;
+
+    this.setState({ imgTag: imgTag });
   };
 
   render() {
@@ -39,9 +49,16 @@ export default class TextInput extends Component {
             />
         </div>
         <div className='todds-test-btn-container'>
-          <button class={this.state.btnClassName} type="button">
-            DO NOT PRESS THE BUTTON!
-          </button>
+          <button
+            class={this.state.btnClassName}
+            type='button'
+            onClick={this.addPicture}
+          >DO NOT PRESS THE BUTTON!</button>
+        </div>
+        <div className='todds-test-img-list-container'>
+          <ul className='todds-test-img-list' style={{listStyleType: 'none'}}>
+            <li>{this.state.imgTag}</li>
+          </ul>
         </div>
       </div>
     );
